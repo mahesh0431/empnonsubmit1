@@ -36,6 +36,10 @@ sap.ui.define([
 				userType: this.getComponentData().startupParameters.ISMANAGER[0]
 			};
 
+			this.setModel(models.createCompParamModel(mData), "componentParams");
+				
+			// code is fine	
+				
 			// create the views based on the url/hash
 			this.getRouter().initialize();
 		},
