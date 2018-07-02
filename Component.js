@@ -37,9 +37,8 @@ sap.ui.define([
 			};
 
 			this.setModel(models.createCompParamModel(mData), "componentParams");
-				
+
 			// code is fine	
-				
 			// create the views based on the url/hash
 			this.getRouter().initialize();
 		},
