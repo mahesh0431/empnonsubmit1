@@ -30,6 +30,7 @@ sap.ui.define([
 			// set the FLP model
 			this.setModel(models.createFLPModel(), "FLP");
 
+
 			// Get the component parameter and set it to component
 			// here we will read if the manager is opening the app or if it the employee
 			var mData = {
