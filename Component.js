@@ -35,6 +35,10 @@ sap.ui.define([
 			var mData = {
 				userType: this.getComponentData().startupParameters.ISMANAGER[0]
 			};
+
+			var b = 10;
+			var c = 15;
+			//this.setModel(models.createCompParamModel(mData), "componentParams");
 			var a = 1;
 
 			// create the views based on the url/hash
