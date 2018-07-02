@@ -36,15 +36,6 @@ sap.ui.define([
 				userType: this.getComponentData().startupParameters.ISMANAGER[0]
 			};
 
-			var b = 10;
-			var c = 15;
-			//this.setModel(models.createCompParamModel(mData), "componentParams");
-
-			var b = 'haleloluya';
-			var c = 3;
-			var a = 3;
-
-
 			// create the views based on the url/hash
 			this.getRouter().initialize();
 		},
