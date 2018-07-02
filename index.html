@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+
+		<title>Employee Award Nomination</title>
+
+		<script id="sap-ui-bootstrap"
+			src="resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m, sap.ui.commons"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-preload="async"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-appCacheBuster="./"
+			data-sap-ui-resourceroots='{"emp.nom.sub" : "./"}'>
+		</script>
+		<!--<script src="utils/spin.min.js"></script>-->
+
+		<!-- Application launch configuration -->
+		<script>
+			sap.ui.getCore().attachInit(function() {
+				new sap.ui.core.ComponentContainer({
+					height : "100%",
+					name : "emp.nom.sub"
+				}).placeAt("content")
+			});	
+
+		</script>
+	</head>
+
+	<!-- UI Content -->
+	<body class="sapUiBody" id="content">
+		<div  id="busyindicator">
+		</div>
+	</body>
+	
+		<!--<script>
+			var opts = {
+   lines: 7 // The number of lines to draw
+, length: 16 // The length of each line
+, width: 2 // The line thickness
+, radius: 9 // The radius of the inner circle
+, scale: 1 // Scales overall size of the spinner
+, corners: 1 // Corner roundness (0..1)
+, color: '#000' // #rgb or #rrggbb or array of colors
+, opacity: 0.15 // Opacity of the lines
+, rotate: 12 // The rotation offset
+, direction: 1 // 1: clockwise, -1: counterclockwise
+, speed: 1.7 // Rounds per second
+, trail: 82 // Afterglow percentage
+, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+, zIndex: 2e9 // The z-index (defaults to 2000000000)
+, className: 'spinner' // The CSS class to assign to the spinner
+, top: '35%' // Top position relative to parent
+, left: '49%' // Left position relative to parent
+, shadow: false // Whether to render a shadow
+, hwaccel: true // Whether to use hardware acceleration
+, position: 'absolute' // Element positioning
+}
+var target = document.getElementById('busyindicator')
+var spinner = new Spinner(opts).spin(target);
+		</script>-->			
+
+</html>

@@ -1,0 +1,65 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="emp.nom.sub.controller.ProgNominForm"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:rte="sap.ui.richtexteditor">
+	<Page title="Program" showNavButton="true" navButtonPress="handleNavBack" backgroundDesign="Transparent" titleLevel="H2" showFooter="true"
+		enableScrolling="false">
+		<content>
+			<!--<VBox height="100%">-->
+			<l:FixFlex fixFirst="false">
+				<l:flexContent >
+					<Panel expandable="true" expanded="true" width="auto" height="90%" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Brief description of job duties:"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<rte:RichTextEditor editorType="TinyMCE4" width="100%" height="95%" value="" />
+							<!--<l:VerticalLayout id="idFormEditorLayout" width="100%"></l:VerticalLayout>-->
+						</content>
+						<layoutData>
+							<FlexItemData minHeight="70%" maxHeight="70%"></FlexItemData>
+						</layoutData>
+					</Panel>
+				</l:flexContent>
+				<l:fixContent>
+					<Panel expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<Toolbar >
+								<Title text="Reasons for Nomination:"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<l:Grid defaultSpan="L2 M4 S4">
+								<l:content>
+									<CheckBox text="People Focus"/>
+									<CheckBox text="Innovation"/>
+									<CheckBox text="Diligence"/>
+									<CheckBox text="Transparency"/>
+									<CheckBox text="Results Orientation"/>
+									<CheckBox text="Positive Attitude"/>
+									<CheckBox text="Results Through Teamwork"/>
+									<CheckBox text="Continuous Improvement"/>
+									<CheckBox text="Communication"/>
+									<CheckBox text="Integrity"/>
+								</l:content>
+							</l:Grid>
+						</content>
+						<layoutData>
+							<FlexItemData minHeight="30%" maxHeight="30%"></FlexItemData>
+						</layoutData>
+					</Panel>
+				</l:fixContent>
+				<!--</VBox>-->
+			</l:FixFlex>
+		</content>
+		<footer>
+			<Toolbar>
+				<Toolbarspacer/>
+				<Button icon="sap-icon://save" text="Save"/>
+				<Button icon="sap-icon://accept" text="Submit"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

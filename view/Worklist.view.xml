@@ -1,0 +1,102 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:uxap="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="emp.nom.sub.controller.Worklist" height="100%">
+	<Page id="idEmpPage" class="cl_EmpPage" navButtonPress="onNavBack" showFooter="true" showNavButton="true" title="{i18n>worklistViewTitle}">
+		<customHeader>
+			<Toolbar id="idEmpPageCustomBar" class="cl_EmpTsWlPageCustBar">
+				<content>
+					<!--<ImageContent class="cl_waslLogo" src="images/wasl_logo.png" ></ImageContent>-->
+					<Image class="waslLogo" src="images/wasl_logo.png" height="35px" width="50px" backgroundPosition="center"/>
+					<ToolbarSpacer/>
+					<core:Icon src="sap-icon://competitor"/>
+					<Label id="idEmpTsPageCustomBarLabel" text="Employee Award Nomination"></Label>
+					<core:Icon src="sap-icon://competitor"/>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://log" class="cl_EmpPageLogOff" press="onAppLogoff" tooltip="Close"></Button>
+				</content>
+			</Toolbar>
+		</customHeader>
+		<content>
+			<uxap:ObjectPageLayout id="idEmpPageObjLayout" class="cl_EmpPageObjLayout" showTitleInHeaderContent="true" showHeaderContent="true">
+				<uxap:headerTitle>
+					<uxap:ObjectPageHeader id="idEmpPageHeader" headerDesign="Light" class="sapUiSmallMarginTop cl_EmpPageHeader" objectTitle="Punith Babu"
+						showTitleSelector="false" showMarkers="false" markFavorite="false" markFlagged="false" markChanges="false"
+						markChangesPress="handleMarkChangesPress" objectSubtitle="SAP Developer" objectImageURI="images/wasl_logo.png" objectImageShape="Circle"
+						isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="false"
+						showPlaceholder="true">
+						<!--	<uxap:actions>
+							<uxap:ObjectPageHeaderActionButton class="sapUiSmallMarginEnd cl_EmpTsActButton" tooltip="View Org Chart" visible="true" icon="sap-icon://org-chart"
+								press="onOrgChart"/>
+						</uxap:actions>-->
+					</uxap:ObjectPageHeader>
+				</uxap:headerTitle>
+				<uxap:headerContent>
+					<layout:VerticalLayout >
+						<ObjectStatus title="Department" text="Information Technology"/>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout >
+						<ObjectStatus title="Mobile" text="971509772754"/>
+						<ObjectStatus title="Email" text="pbabu@wasl.ae"/>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout>
+						<ObjectStatus title="Manager" text="Simyon Stanli"/>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout visible="{= ${device>/system/desktop} === true}"/>
+					<layout:VerticalLayout>
+						<ObjectStatus title="Overall Status" text="Pending" state="Error"/>
+						<!--<ObjectStatus title="Rejected Reason" text="{tsEmpAppData>/status/stateText}" visible="{path: 'tsEmpAppData>/status/description', formatter: '.formatter.showRejectedReason'}"  state="{path: 'tsEmpAppData>/status/state', formatter: '.formatter.getTsHeaderStatus'}" />-->
+					</layout:VerticalLayout>
+				</uxap:headerContent>
+				<uxap:sections>
+					<uxap:ObjectPageSection title="Program Nominations" class="cl_EmpPageObjPageSection">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection title="">
+								<!--<Panel expandable="false" expanded="true" class="cl_EmpPageProgPanel">-->
+								<!--	<layout:Grid defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop">-->
+								<!--		<layout:content>-->
+											<List mode="None" items="" noDataText="NO ITEMS FOUND">
+												<CustomListItem class="sapUiSmallMarginTopBottom" press="handleProgramSelect" type="Navigation">
+													<HBox>
+														<core:Icon size="2rem" color="green" src="sap-icon://complete" visible="true" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+														<core:Icon size="2rem" color="red" src="sap-icon://pending" visible="false" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+															<!--	<Label text="Program Name" class="bold headerInfo"/>-->
+															<Title class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Nomination for Employee of Year" level="H1" titleStyle="H4"/>
+															<!--<Text text="Please Nomination for Employee of Year" class="bold headerInfo"/>-->
+														</VBox>
+														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+															<!--	<Label text="Program Type"/>-->
+															<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Employer of Year 2017"/>
+														</VBox>
+														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+															<!--	<Label text="Started"/>-->
+															<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="01,JUN 2018"/>
+														</VBox>
+														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+															<!--<Label text="Ending"/>-->
+															<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="31,DEC 2018"/>
+														</VBox>
+														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+															<!--	<Label text="Status"/>-->
+															<ObjectStatus class="sapUiTinyMarginTop sapUiSmallMarginBegin" title="Pending" state="Error"/>
+														</VBox>
+													</HBox>
+												</CustomListItem>
+											</List>
+								<!--		</layout:content>-->
+								<!--	</layout:Grid>-->
+								<!--</Panel>-->
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+				</uxap:sections>
+			</uxap:ObjectPageLayout>
+		</content>
+		<footer>
+			<Toolbar>
+				<Button id="idAppMessages" icon="sap-icon://message-popup" type="Reject"  press="handleAppMessages"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://history" text="History" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>
