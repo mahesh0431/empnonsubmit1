@@ -33,13 +33,15 @@ sap.ui.define([
 			// Get the component parameter and set it to component
 			// here we will read if the manager is opening the app or if it the employee
 			var mData = {
-				userType: this.getComponentData().startupParameters.ISMANAGER[0]
+				userType: false
 			};
+			if (this.getComponentData() && this.getComponentData().ISMANAGER) {
+				mData.userType = this.getComponentData().startupParameters.ISMANAGER[0];
+			}
 
 			this.setModel(models.createCompParamModel(mData), "componentParams");
-				
+
 			// code is fine	
-				
 			// create the views based on the url/hash
 			this.getRouter().initialize();
 		},
