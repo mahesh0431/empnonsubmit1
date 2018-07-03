@@ -22,6 +22,14 @@ sap.ui.define([
 					this.getOwnerComponent().oListSelector.setBoundMasterList(oList);
 				}.bind(this)
 			});
+
+			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
+				this.mangerNo = '156';
+				var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
+					EmpNo: '156'
+				});
+				this._bindView("/" + sObjectPath);
+			}.bind(this));
 		},
 
 		/*********************************************************************************************************/
@@ -53,12 +61,12 @@ sap.ui.define([
 
 			this.mangerNo = oEvent.getParameter("arguments").managerNo;
 
-			this.getModel().metadataLoaded().then(function() {
-				var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
-					EmpNo: this.mangerNo
-				});
-				this._bindView("/" + sObjectPath);
-			}.bind(this));
+			// this.getModel().metadataLoaded().then(function() {
+			// 	var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
+			// 		EmpNo: this.mangerNo
+			// 	});
+			// 	this._bindView("/" + sObjectPath);
+			// }.bind(this));
 
 			this.getView().byId("teamMembersTable").getBinding("items").filter([new Filter("Empmgrno", FilterOperator.Contains, this.mangerNo)]);
 

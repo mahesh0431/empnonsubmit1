@@ -36,7 +36,7 @@ sap.ui.define([
 		},
 
 		onAfterRendering: function() {
-			this._loadApplicationData();
+			// this._loadApplicationData();
 
 		},
 
@@ -68,7 +68,7 @@ sap.ui.define([
 		 */
 		handleShowTeam: function() {
 			this.getOwnerComponent().getRouter().navTo("managerteam", {
-				managerNo: "1121"
+				managerNo: this.empId
 			});
 		},
 
@@ -85,7 +85,20 @@ sap.ui.define([
 		 * @constructor 
 		 */
 		_employeeHandler: function() {
-			this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
+			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
+
+			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
+				var oModel = this.getOwnerComponent().getModel();
+				this.getView().setBusy(true);
+				oModel.callFunction("/GetLoginEmployeeId", {
+					method: "GET",
+					success: function(mData) {
+						// this.getView().setBusy(false);
+						this.empId = mData.GetLoginEmployeeId.empId;
+						this._bindView(mData.GetLoginEmployeeId.empId);
+					}.bind(this)
+				});
+			}.bind(this));
 		},
 
 		/** 
@@ -94,10 +107,44 @@ sap.ui.define([
 		 * @param oEvent to get the employee id
 		 */
 		_teamMemberHandler: function(oEvent) {
-			var sObjectId = oEvent.getParameter("arguments").employeeId;
-			this.getView().byId("idEmpTsPageCustomBarLabel").setText("Manager Award Nomination");
-			
-			
+			this.empId = oEvent.getParameter("arguments").employeeId;
+			this.managerId = oEvent.getParameter("arguments").managerNo;
+
+			this._bindView(this.empId);
+			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Manager Award Nomination");
+
+		},
+
+		_bindView: function(empId) {
+
+			this.getModel().metadataLoaded().then(function() {
+				var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
+					EmpNo: empId
+				});
+
+				this.getView().unbindElement();
+				this.getView().bindElement({
+					path: "/" + sObjectPath,
+					events: {
+						change: function() {
+							this.getView().setBusy(false);
+							// this.getView().getModel().refresh();
+						}.bind(this),
+						dataRequested: function() {
+							this.getOwnerComponent().getModel().metadataLoaded().then(function() {
+								// Busy indicator on view should only be set if metadata is loaded,
+								// otherwise there may be two busy indications next to each other on the
+								// screen. This happens because route matched handler already calls '_bindView'
+								// while metadata is loaded.
+								this.getView().setBusy(true);
+							}.bind(this));
+						}.bind(this),
+						dataReceived: function() {
+							this.getView().setBusy(false);
+						}.bind(this)
+					}
+				});
+			}.bind(this));
 		},
 
 		_loadApplicationData: function() {

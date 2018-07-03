@@ -35,7 +35,7 @@ sap.ui.define([
 			// Get the component parameter and set it to component
 			// here we will read if the manager is opening the app or if it the employee
 			var mData = {
-				userType: false
+				isManager: true
 			};
 			if (this.getComponentData() && this.getComponentData().ISMANAGER) {
 				mData.userType = this.getComponentData().startupParameters.ISMANAGER[0];

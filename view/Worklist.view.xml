@@ -8,7 +8,7 @@
 					<Image class="waslLogo" src="images/wasl_logo.png" height="35px" width="50px" backgroundPosition="center"/>
 					<ToolbarSpacer/>
 					<core:Icon src="sap-icon://competitor"/>
-					<Label id="idEmpTsPageCustomBarLabel"></Label>
+					<Label id="idEmpTsPageCustomBarLabel" text="Award Nomination"></Label>
 					<core:Icon src="sap-icon://competitor"/>
 					<ToolbarSpacer/>
 					<Button icon="sap-icon://log" class="cl_EmpPageLogOff" press="onAppLogoff" tooltip="Close"></Button>
@@ -34,6 +34,10 @@
 						<ObjectStatus title="Department" text="Information Technology"/>
 					</layout:VerticalLayout>
 					<layout:VerticalLayout >
+						<ObjectStatus id="empId" title="Employee No" text="{EmpNo}"/>
+						<!--<Text text="{EmpNo}"/>-->
+					</layout:VerticalLayout>
+					<layout:VerticalLayout >
 						<ObjectStatus title="Mobile" text="971509772754"/>
 						<ObjectStatus title="Email" text="pbabu@wasl.ae"/>
 					</layout:VerticalLayout>
@@ -53,35 +57,35 @@
 								<!--<Panel expandable="false" expanded="true" class="cl_EmpPageProgPanel">-->
 								<!--	<layout:Grid defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop">-->
 								<!--		<layout:content>-->
-											<List mode="None" items="" noDataText="NO ITEMS FOUND">
-												<CustomListItem class="sapUiSmallMarginTopBottom" press="handleProgramSelect" type="Navigation">
-													<HBox>
-														<core:Icon size="2rem" color="green" src="sap-icon://complete" visible="true" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
-														<core:Icon size="2rem" color="red" src="sap-icon://pending" visible="false" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
-														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
-															<!--	<Label text="Program Name" class="bold headerInfo"/>-->
-															<Title class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Nomination for Employee of Year" level="H1" titleStyle="H4"/>
-															<!--<Text text="Please Nomination for Employee of Year" class="bold headerInfo"/>-->
-														</VBox>
-														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
-															<!--	<Label text="Program Type"/>-->
-															<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Employer of Year 2017"/>
-														</VBox>
-														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
-															<!--	<Label text="Started"/>-->
-															<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="01,JUN 2018"/>
-														</VBox>
-														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
-															<!--<Label text="Ending"/>-->
-															<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="31,DEC 2018"/>
-														</VBox>
-														<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
-															<!--	<Label text="Status"/>-->
-															<ObjectStatus class="sapUiTinyMarginTop sapUiSmallMarginBegin" title="Pending" state="Error"/>
-														</VBox>
-													</HBox>
-												</CustomListItem>
-											</List>
+								<List mode="None" items="" noDataText="NO ITEMS FOUND">
+									<CustomListItem class="sapUiSmallMarginTopBottom" press="handleProgramSelect" type="Navigation">
+										<HBox>
+											<core:Icon size="2rem" color="green" src="sap-icon://complete" visible="true" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+											<core:Icon size="2rem" color="red" src="sap-icon://pending" visible="false" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+												<!--	<Label text="Program Name" class="bold headerInfo"/>-->
+												<Title class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Nomination for Employee of Year" level="H1" titleStyle="H4"/>
+												<!--<Text text="Please Nomination for Employee of Year" class="bold headerInfo"/>-->
+											</VBox>
+											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+												<!--	<Label text="Program Type"/>-->
+												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Employer of Year 2017"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+												<!--	<Label text="Started"/>-->
+												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="01,JUN 2018"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+												<!--<Label text="Ending"/>-->
+												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="31,DEC 2018"/>
+											</VBox>
+											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+												<!--	<Label text="Status"/>-->
+												<ObjectStatus class="sapUiTinyMarginTop sapUiSmallMarginBegin" title="Pending" state="Error"/>
+											</VBox>
+										</HBox>
+									</CustomListItem>
+								</List>
 								<!--		</layout:content>-->
 								<!--	</layout:Grid>-->
 								<!--</Panel>-->
@@ -93,9 +97,9 @@
 		</content>
 		<footer>
 			<Toolbar>
-				<Button id="idAppMessages" icon="sap-icon://message-popup" type="Reject"  press="handleAppMessages"/>
+				<Button id="idAppMessages" icon="sap-icon://message-popup" type="Reject" press="handleAppMessages"/>
 				<ToolbarSpacer/>
-				<Button icon="sap-icon://manager" text="Nominate Team" type="Emphasized" press="handleShowTeam"></Button>
+				<Button icon="sap-icon://manager" visible="{componentParams>/isManager}" text="Nominate Team" type="Emphasized" press="handleShowTeam"></Button>
 				<Button icon="sap-icon://history" text="History" type="Emphasized"/>
 			</Toolbar>
 		</footer>
