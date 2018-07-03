@@ -111,13 +111,13 @@
 					"worklist"
 				]
 			}, {
-				"pattern": "managerteam",
+				"pattern": "managerteam/{managerNo}",
 				"name": "managerteam",
 				"target": [
 					"teamWorklist"
 				]
 			}, {
-				"pattern": "managerteam/{employeeId}",
+				"pattern": "managerteam/{managerNo}/empNo/{employeeId}",
 				"name": "managerteammember",
 				"target": [
 					"managerTeam",

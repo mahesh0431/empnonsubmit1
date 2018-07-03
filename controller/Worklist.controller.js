@@ -61,13 +61,15 @@ sap.ui.define([
 				programID: "P000001"
 			});
 		},
-		
+
 		/** 
 		 * The below function will be used to call split app which
 		 * shows employee and their nominations
 		 */
-		handleShowTeam: function(){
-			this.getOwnerComponent().getRouter().navTo("managerteam");
+		handleShowTeam: function() {
+			this.getOwnerComponent().getRouter().navTo("managerteam", {
+				managerNo: "1121"
+			});
 		},
 
 		/* ============================================================ */

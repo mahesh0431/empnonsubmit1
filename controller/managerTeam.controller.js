@@ -1,6 +1,9 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"emp/nom/sub/controller/BaseController",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+	"sap/ui/Device"
+], function(Controller, Filter, FilterOperator, Device) {
 	"use strict";
 
 	return Controller.extend("emp.nom.sub.controller.managerTeam", {
@@ -10,35 +13,50 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf emp.nom.sub.view.managerTeam
 		 */
-		//	onInit: function() {
-		//
-		//	},
+		onInit: function() {
+			this.getRouter().getRoute("managerteam").attachPatternMatched(this._handleManagerTeamPattern, this);
+		},
+
+		/*********************************************************************************************************/
+		/** Event Handler Methods 
+		/*********************************************************************************************************/
+		/** 
+		 * Navigate back
+		 */
+		handleNavBack: function() {
+			this.navBack();
+		},
 
 		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf emp.nom.sub.view.managerTeam
+		 * Event handler for the list selection event
+		 * @param {sap.ui.base.Event} oEvent the list selectionChange event
+		 * @public
 		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
+		onSelectionChange: function(oEvent) {
+			// get the list item, either from the listItem parameter or from the event's source itself (will depend on the device-dependent mode).
+			this._showDetail(oEvent.getParameter("listItem") || oEvent.getSource());
+		},
 
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf emp.nom.sub.view.managerTeam
+		/** 
+		 * For reading the manager no
+		 * @constructor 
+		 * @param oEvent event data
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+		_handleManagerTeamPattern: function(oEvent) {
+			this.mangerNo = oEvent.getParameter("arguments").managerNo;
+			this.getView().byId("teamMembersTable").getBinding("items").filter([new Filter("Empmgrno", FilterOperator.Contains, this.mangerNo)]);
+		},
 
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf emp.nom.sub.view.managerTeam
-		 */
-		//	onExit: function() {
-		//
-		//	}
+		/*********************************************************************************************************/
+		/** Local Methods 
+		/*********************************************************************************************************/
+		_showDetail: function(oItem) {
+			var bReplace = !Device.system.phone;
+			this.getRouter().navTo("managerteammember", {
+				managerNo: this.mangerNo,
+				employeeId: oItem.getBindingContext().getProperty("Empno")
+			}, bReplace);
+		}
 
 	});
 
