@@ -39,7 +39,10 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_bluecrystal"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -95,28 +98,45 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": ["notFound"]
+					"target": [
+						"notFound"
+					]
 				},
 				"async": true
 			},
-			"routes": [{
-				"pattern": "",
-				"name": "worklist",
-				"target": ["worklist"]
-			}, {
-				"pattern": "managerteam",
-				"name": "managerteam",
-				"target": ["teamWorklist", "managerTeam"]
-			}, {
-				"pattern": "managerteam/empNo/{employeeId}",
-				"name": "managerteammember",
-				"target": ["managerTeam", "teamWorklist"]
-			}, {
-				"name": "program",
-				"pattern": "Program/{programID}",
-				"greedy": false,
-				"target": ["programForm"]
-			}],
+			"routes": [
+				{
+					"pattern": "",
+					"name": "worklist",
+					"target": [
+						"worklist"
+					]
+				},
+				{
+					"pattern": "managerteam",
+					"name": "managerteam",
+					"target": [
+						"teamWorklist",
+						"managerTeam"
+					]
+				},
+				{
+					"pattern": "managerteam/empNo/{employeeId}",
+					"name": "managerteammember",
+					"target": [
+						"managerTeam",
+						"teamWorklist"
+					]
+				},
+				{
+					"name": "program",
+					"pattern": "Program/{programID}",
+					"greedy": false,
+					"target": [
+						"programForm"
+					]
+				}
+			],
 			"targets": {
 				"worklist": {
 					"viewName": "Worklist",
