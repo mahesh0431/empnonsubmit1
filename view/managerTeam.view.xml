@@ -2,7 +2,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page title="My Team Members" showNavButton="true" navButtonPress="handleNavBack">
 		<content>
-			<List id="teamMembersTable" busyIndicatorDelay="0" items="{EmpTeamMemberSet}" growing="true" growingThreshold="10"
+			<List id="teamMembersTable" busyIndicatorDelay="0" items="{/EmpTeamMemberSet}" growing="true" growingThreshold="10"
 				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" updateFinished="onUpdateFinished" selectionChange="onSelectionChange">
 				<StandardListItem type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange" title="{Empname}"
 					icon="sap-icon://person-placeholder" iconDensityAware="false" iconInset="false"/>

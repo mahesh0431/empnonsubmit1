@@ -70,7 +70,7 @@ sap.ui.define([
 		 * @param {string} sBindingPath the binding path matching the binding path of a list item
 		 * @public
 		 */
-		selectAListItem: function(sBindingPath) {
+		selectAListItem: function(Empno) {
 
 			this.oWhenListLoadingIsDone.then(
 				function() {
@@ -84,19 +84,19 @@ sap.ui.define([
 					oSelectedItem = oList.getSelectedItem();
 
 					// skip update if the current selection is already matching the object path
-					if (oSelectedItem && oSelectedItem.getBindingContext().getPath() === sBindingPath) {
+					if (oSelectedItem && oSelectedItem.getBindingContext().getObject().Empno === Empno) {
 						return;
 					}
 
 					oList.getItems().some(function(oItem) {
-						if (oItem.getBindingContext() && oItem.getBindingContext().getPath() === sBindingPath) {
+						if (oItem.getBindingContext() && oItem.getBindingContext().getObject().Empno === Empno) {
 							oList.setSelectedItem(oItem);
 							return true;
 						}
 					});
 				}.bind(this),
 				function() {
-					jQuery.sap.log.warning("Could not select the list item with the path" + sBindingPath +
+					jQuery.sap.log.warning("Could not select the list item with the path" + Empno +
 						" because the list encountered an error or had no items");
 				}
 			);

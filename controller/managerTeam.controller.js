@@ -23,13 +23,13 @@ sap.ui.define([
 				}.bind(this)
 			});
 
-			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
-				this.mangerNo = '156';
-				var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
-					EmpNo: '156'
-				});
-				this._bindView("/" + sObjectPath);
-			}.bind(this));
+			// this.getOwnerComponent().getModel().metadataLoaded().then(function() {
+			// 	this.mangerNo = '156';
+			// 	var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
+			// 		EmpNo: '156'
+			// 	});
+			// 	this._bindView("/" + sObjectPath);
+			// }.bind(this));
 		},
 
 		/*********************************************************************************************************/
@@ -59,7 +59,7 @@ sap.ui.define([
 		 */
 		_handleManagerTeamPattern: function(oEvent) {
 
-			this.mangerNo = oEvent.getParameter("arguments").managerNo;
+			// this.mangerNo = oEvent.getParameter("arguments").managerNo;
 
 			// this.getModel().metadataLoaded().then(function() {
 			// 	var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
@@ -78,7 +78,7 @@ sap.ui.define([
 					}
 					var sObjectId = mParams.firstListitem.getBindingContext().getProperty("Empno");
 					this.getRouter().navTo("managerteammember", {
-						managerNo: this.mangerNo,
+						// managerNo: this.mangerNo,
 						employeeId: sObjectId
 					}, true);
 				}.bind(this),
@@ -96,30 +96,30 @@ sap.ui.define([
 		/*********************************************************************************************************/
 
 		_bindView: function(sObjectPath) {
-			this.getView().bindElement({
-				path: sObjectPath,
-				events: {
-					// change: this._onBindingChange.bind(this),
-					dataRequested: function() {
-						this.getOwnerComponent().getModel().metadataLoaded().then(function() {
-							// Busy indicator on view should only be set if metadata is loaded,
-							// otherwise there may be two busy indications next to each other on the
-							// screen. This happens because route matched handler already calls '_bindView'
-							// while metadata is loaded.
-							this.getView().setBusy(true);
-						}.bind(this));
-					}.bind(this),
-					dataReceived: function() {
-						this.getView().setBusy(false);
-					}.bind(this)
-				}
-			});
+			// this.getView().bindElement({
+			// 	path: sObjectPath,
+			// 	events: {
+			// 		// change: this._onBindingChange.bind(this),
+			// 		dataRequested: function() {
+			// 			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
+			// 				// Busy indicator on view should only be set if metadata is loaded,
+			// 				// otherwise there may be two busy indications next to each other on the
+			// 				// screen. This happens because route matched handler already calls '_bindView'
+			// 				// while metadata is loaded.
+			// 				this.getView().setBusy(true);
+			// 			}.bind(this));
+			// 		}.bind(this),
+			// 		dataReceived: function() {
+			// 			this.getView().setBusy(false);
+			// 		}.bind(this)
+			// 	}
+			// });
 		},
 
 		_showDetail: function(oItem) {
 			var bReplace = !Device.system.phone;
 			this.getRouter().navTo("managerteammember", {
-				managerNo: this.mangerNo,
+				// managerNo: this.mangerNo,
 				employeeId: oItem.getBindingContext().getProperty("Empno")
 			}, bReplace);
 		}

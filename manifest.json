@@ -39,10 +39,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_bluecrystal"
-		]
+		"supportedThemes": ["sap_hcb", "sap_bluecrystal"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -53,18 +50,18 @@
 		"dependencies": {
 			"minUI5Version": "1.38.0",
 			"libs": {
-				"sap.ui.core": {
-					"minVersion": "1.38.0"
+				"sap.collaboration": {
+					"minVersion": "1.38",
+					"lazy": true
 				},
 				"sap.m": {
 					"minVersion": "1.38.0"
 				},
-				"sap.ushell": {
+				"sap.ui.core": {
 					"minVersion": "1.38.0"
 				},
-				"sap.collaboration": {
-					"minVersion": "1.38",
-					"lazy": true
+				"sap.ushell": {
+					"minVersion": "1.38.0"
 				}
 			}
 		},
@@ -85,7 +82,7 @@
 				"preload": true,
 				"settings": {
 					"defaultCountMode": "None",
-					"defaultBindingMode": "OneTime",
+					"defaultBindingMode": "OneWay",
 					"defaultOperationMode": "Server"
 				}
 			}
@@ -98,39 +95,27 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": [
-						"notFound"
-					]
+					"target": ["notFound"]
 				},
 				"async": true
 			},
 			"routes": [{
 				"pattern": "",
 				"name": "worklist",
-				"target": [
-					"worklist"
-				]
+				"target": ["worklist"]
 			}, {
-				"pattern": "managerteam/{managerNo}",
+				"pattern": "managerteam",
 				"name": "managerteam",
-				"target": [
-					"teamWorklist",
-					"managerTeam"
-				]
+				"target": ["teamWorklist", "managerTeam"]
 			}, {
-				"pattern": "managerteam/{managerNo}/empNo/{employeeId}",
+				"pattern": "managerteam/empNo/{employeeId}",
 				"name": "managerteammember",
-				"target": [
-					"managerTeam",
-					"teamWorklist"
-				]
+				"target": ["managerTeam", "teamWorklist"]
 			}, {
 				"name": "program",
 				"pattern": "Program/{programID}",
 				"greedy": false,
-				"target": [
-					"programForm"
-				]
+				"target": ["programForm"]
 			}],
 			"targets": {
 				"worklist": {

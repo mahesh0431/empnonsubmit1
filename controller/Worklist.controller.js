@@ -67,9 +67,7 @@ sap.ui.define([
 		 * shows employee and their nominations
 		 */
 		handleShowTeam: function() {
-			this.getOwnerComponent().getRouter().navTo("managerteam", {
-				managerNo: this.empId
-			});
+			this.getOwnerComponent().getRouter().navTo("managerteam");
 		},
 
 		/* ============================================================ */
@@ -108,14 +106,26 @@ sap.ui.define([
 		 */
 		_teamMemberHandler: function(oEvent) {
 			this.empId = oEvent.getParameter("arguments").employeeId;
-			this.managerId = oEvent.getParameter("arguments").managerNo;
+			// this.managerId = oEvent.getParameter("arguments").managerNo;
 
-			this._bindView(this.empId);
+			// If team member data is loaded successfully, we need to call listselector method
+			// create the promise
+
+			var fnSuccess,
+				oTeamMemberLoaded = new Promise(function(success) {
+					fnSuccess = success;
+				});
+
+			this._bindView(this.empId, fnSuccess);
+			oTeamMemberLoaded.then(function() {
+				var oView = this.getView();
+				this.getOwnerComponent().oListSelector.selectAListItem(oView.getBindingContext().getObject().EmpNo);
+			}.bind(this));
 			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Manager Award Nomination");
 
 		},
 
-		_bindView: function(empId) {
+		_bindView: function(empId, fnTeamHandlerSuccess) {
 
 			this.getModel().metadataLoaded().then(function() {
 				var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
@@ -127,6 +137,9 @@ sap.ui.define([
 					path: "/" + sObjectPath,
 					events: {
 						change: function() {
+							if (fnTeamHandlerSuccess) {
+								fnTeamHandlerSuccess();
+							}
 							this.getView().setBusy(false);
 							// this.getView().getModel().refresh();
 						}.bind(this),

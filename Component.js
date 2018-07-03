@@ -20,9 +20,10 @@ sap.ui.define([
 		 * @override
 		 */
 		init: function() {
-			this.oListSelector = new ListSelector();
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
+
+			this.oListSelector = new ListSelector();
 
 			// initialize the error handler with the component
 			// this._oErrorHandler = new ErrorHandler(this);
@@ -55,7 +56,7 @@ sap.ui.define([
 		 * @override
 		 */
 		destroy: function() {
-				this.oListSelector.destroy();
+			this.oListSelector.destroy();
 			this._oErrorHandler.destroy();
 			// call the base component's destroy function
 			UIComponent.prototype.destroy.apply(this, arguments);
