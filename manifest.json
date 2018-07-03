@@ -114,7 +114,8 @@
 				"pattern": "managerteam/{managerNo}",
 				"name": "managerteam",
 				"target": [
-					"teamWorklist"
+					"teamWorklist",
+					"managerTeam"
 				]
 			}, {
 				"pattern": "managerteam/{managerNo}/empNo/{employeeId}",

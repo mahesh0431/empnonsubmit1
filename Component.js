@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
 	"emp/nom/sub/model/models",
-	"emp/nom/sub/controller/ErrorHandler"
-], function(UIComponent, Device, models, ErrorHandler) {
+	"emp/nom/sub/controller/ErrorHandler",
+	"emp/nom/sub/controller/ListSelector"
+], function(UIComponent, Device, models, ErrorHandler, ListSelector) {
 	"use strict";
 
 	return UIComponent.extend("emp.nom.sub.Component", {
@@ -19,6 +20,7 @@ sap.ui.define([
 		 * @override
 		 */
 		init: function() {
+			this.oListSelector = new ListSelector();
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 
@@ -30,7 +32,6 @@ sap.ui.define([
 			// set the FLP model
 			this.setModel(models.createFLPModel(), "FLP");
 
-
 			// Get the component parameter and set it to component
 			// here we will read if the manager is opening the app or if it the employee
 			var mData = {
@@ -39,8 +40,7 @@ sap.ui.define([
 			if (this.getComponentData() && this.getComponentData().ISMANAGER) {
 				mData.userType = this.getComponentData().startupParameters.ISMANAGER[0];
 			}
- 
- 
+
 			this.setModel(models.createCompParamModel(mData), "componentParams");
 
 			// code is fine	
@@ -55,6 +55,7 @@ sap.ui.define([
 		 * @override
 		 */
 		destroy: function() {
+				this.oListSelector.destroy();
 			this._oErrorHandler.destroy();
 			// call the base component's destroy function
 			UIComponent.prototype.destroy.apply(this, arguments);

@@ -15,6 +15,13 @@ sap.ui.define([
 		 */
 		onInit: function() {
 			this.getRouter().getRoute("managerteam").attachPatternMatched(this._handleManagerTeamPattern, this);
+			var oList = this.getView().byId("teamMembersTable");
+
+			this.getView().addEventDelegate({
+				onBeforeFirstShow: function() {
+					this.getOwnerComponent().oListSelector.setBoundMasterList(oList);
+				}.bind(this)
+			});
 		},
 
 		/*********************************************************************************************************/
@@ -43,13 +50,64 @@ sap.ui.define([
 		 * @param oEvent event data
 		 */
 		_handleManagerTeamPattern: function(oEvent) {
+
 			this.mangerNo = oEvent.getParameter("arguments").managerNo;
+
+			this.getModel().metadataLoaded().then(function() {
+				var sObjectPath = this.getModel().createKey("EmpHeaderInfoSet", {
+					EmpNo: this.mangerNo
+				});
+				this._bindView("/" + sObjectPath);
+			}.bind(this));
+
 			this.getView().byId("teamMembersTable").getBinding("items").filter([new Filter("Empmgrno", FilterOperator.Contains, this.mangerNo)]);
+
+			// Below logic is used when the employees are loaded and the first employe is automaticallly selected
+			this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
+				function(mParams) {
+					if (mParams.list.getMode() === "None") {
+						return;
+					}
+					var sObjectId = mParams.firstListitem.getBindingContext().getProperty("Empno");
+					this.getRouter().navTo("managerteammember", {
+						managerNo: this.mangerNo,
+						employeeId: sObjectId
+					}, true);
+				}.bind(this),
+				function(mParams) {
+					if (mParams.error) {
+						return;
+					}
+					// this.getRouter().getTargets().display("detailNoObjectsAvailable");
+				}
+			);
 		},
 
 		/*********************************************************************************************************/
 		/** Local Methods 
 		/*********************************************************************************************************/
+
+		_bindView: function(sObjectPath) {
+			this.getView().bindElement({
+				path: sObjectPath,
+				events: {
+					// change: this._onBindingChange.bind(this),
+					dataRequested: function() {
+						this.getOwnerComponent().getModel().metadataLoaded().then(function() {
+							// Busy indicator on view should only be set if metadata is loaded,
+							// otherwise there may be two busy indications next to each other on the
+							// screen. This happens because route matched handler already calls '_bindView'
+							// while metadata is loaded.
+							this.getView().setBusy(true);
+						}.bind(this));
+					}.bind(this),
+					dataReceived: function() {
+						this.getView().setBusy(false);
+					}.bind(this)
+				}
+			});
+		},
+
 		_showDetail: function(oItem) {
 			var bReplace = !Device.system.phone;
 			this.getRouter().navTo("managerteammember", {

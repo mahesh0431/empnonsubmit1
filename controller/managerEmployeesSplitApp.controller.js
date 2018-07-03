@@ -1,5 +1,6 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"emp/nom/sub/controller/BaseController",
+	"sap/ui/model/json/JSONModel"
 ], function(Controller) {
 	"use strict";
 
@@ -10,9 +11,14 @@ sap.ui.define([
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf emp.nom.sub.view.managerEmployeesSplitApp
 		 */
-		//	onInit: function() {
-		//
-		//	},
+		onInit: function() {
+			var oListSelector = this.getOwnerComponent().oListSelector;
+			// Makes sure that master view is hidden in split app
+			// after a new list entry has been selected.
+			oListSelector.attachListSelectionChange(function() {
+				this.byId("idSplitAppControl").hideMaster();
+			}, this);
+		}
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
