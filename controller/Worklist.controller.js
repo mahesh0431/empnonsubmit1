@@ -32,7 +32,7 @@ sap.ui.define([
 			// For nomral employee/manager who is viewing his data
 			this.getRouter().getRoute("worklist").attachPatternMatched(this._employeeHandler, this);
 			// For manager who views one his team member data
-			this.getRouter().getRoute("teamWorklist").attachPatternMatched(this._teamMemberHandler, this);
+			this.getRouter().getRoute("managerteam").attachPatternMatched(this._teamMemberHandler, this);
 		},
 
 		onAfterRendering: function() {
@@ -70,14 +70,6 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().navTo("managerteam");
 		},
 
-		/** 
-		 * The below function will be used to call split app which
-		 * shows employee and their nominations
-		 */
-		handleShowTeam: function() {
-			this.getOwnerComponent().getRouter().navTo("managerteam");
-		},
-
 		/* ============================================================ */
 		/* Controller Methods                                           */
 		/* =============================================================*/
@@ -91,7 +83,7 @@ sap.ui.define([
 		 * @constructor 
 		 */
 		_employeeHandler: function() {
-
+			this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
 		},
 
 		/** 
@@ -101,6 +93,7 @@ sap.ui.define([
 		 */
 		_teamMemberHandler: function(oEvent) {
 			var sObjectId = oEvent.getParameter("arguments").employeeId;
+			this.getView().byId("idEmpTsPageCustomBarLabel").setText("Manager Award Nomination");
 		},
 
 		_loadApplicationData: function() {

@@ -8,7 +8,7 @@
 					<Image class="waslLogo" src="images/wasl_logo.png" height="35px" width="50px" backgroundPosition="center"/>
 					<ToolbarSpacer/>
 					<core:Icon src="sap-icon://competitor"/>
-					<Label id="idEmpTsPageCustomBarLabel" text="Employee Award Nomination"></Label>
+					<Label id="idEmpTsPageCustomBarLabel"></Label>
 					<core:Icon src="sap-icon://competitor"/>
 					<ToolbarSpacer/>
 					<Button icon="sap-icon://log" class="cl_EmpPageLogOff" press="onAppLogoff" tooltip="Close"></Button>
