@@ -104,40 +104,65 @@
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "worklist",
-					"target": [
-						"worklist"
-					]
-				},
-				{
-					"pattern": "EmpHeaderInfoSet/{objectId}",
-					"name": "object",
-					"target": [
-						"object"
-					]
-				},
-				{
-					"name": "program",
-					"pattern": "Program/{programID}",
-					"greedy": false,
-					"target": [
-						"programForm"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "worklist",
+				"target": [
+					"worklist"
+				]
+			}, {
+				"pattern": "managerteam",
+				"name": "managerteam",
+				"target": [
+					"teamWorklist"
+				]
+			}, {
+				"pattern": "managerteam/{employeeId}",
+				"name": "managerteammember",
+				"target": [
+					"managerTeam",
+					"teamWorklist"
+				]
+			}, {
+				"name": "program",
+				"pattern": "Program/{programID}",
+				"greedy": false,
+				"target": [
+					"programForm"
+				]
+			}],
 			"targets": {
 				"worklist": {
 					"viewName": "Worklist",
 					"viewId": "worklist",
 					"viewLevel": 1
 				},
+				"teamSplitApp": {
+					"viewName": "managerEmployeesSplitApp",
+					"viewId": "managerEmployeesSplitApp",
+					"viewLevel": 2,
+					"transition": "slide"
+				},
+				"teamWorklist": {
+					"parent": "teamSplitApp",
+					"viewName": "managerTeam",
+					"viewId": "managerTeam",
+					"viewLevel": 3,
+					"controlAggregation": "masterPages",
+					"controlId": "idSplitAppControl"
+				},
+				"managerTeam": {
+					"parent": "teamSplitApp",
+					"viewName": "Worklist",
+					"viewId": "worklist",
+					"viewLevel": 2,
+					"controlAggregation": "detailPages",
+					"controlId": "idSplitAppControl"
+				},
 				"object": {
 					"viewName": "Object",
 					"viewId": "object",
-					"viewLevel": 2
+					"viewLevel": 4
 				},
 				"objectNotFound": {
 					"viewName": "ObjectNotFound",
