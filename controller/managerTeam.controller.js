@@ -68,7 +68,7 @@ sap.ui.define([
 			// 	this._bindView("/" + sObjectPath);
 			// }.bind(this));
 
-			this.getView().byId("teamMembersTable").getBinding("items").filter([new Filter("Empmgrno", FilterOperator.Contains, this.mangerNo)]);
+			// this.getView().byId("teamMembersTable").getBinding("items").filter([new Filter("Empmgrno", FilterOperator.Contains, this.mangerNo)]);
 
 			// Below logic is used when the employees are loaded and the first employe is automaticallly selected
 			this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
