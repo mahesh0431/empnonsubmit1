@@ -27,6 +27,12 @@ sap.ui.define([
 			this.oDataManager = new DataManager(this);
 			this._messageHelper = new MessageHelper(this);
 			this._initializeApplicationModels();
+
+			// Register the routes
+			// For nomral employee/manager who is viewing his data
+			this.getRouter().getRoute("worklist").attachPatternMatched(this._employeeHandler, this);
+			// For manager who views one his team member data
+			this.getRouter().getRoute("teamWorklist").attachPatternMatched(this._teamMemberHandler, this);
 		},
 
 		onAfterRendering: function() {
@@ -56,12 +62,37 @@ sap.ui.define([
 			});
 		},
 
+		/** 
+		 * The below function will be used to call split app which
+		 * shows employee and their nominations
+		 */
+		handleShowTeam: function() {
+			this.getOwnerComponent().getRouter().navTo("managerteam");
+		},
+
 		/* ============================================================ */
 		/* Controller Methods                                           */
 		/* =============================================================*/
 
 		_initializeApplicationModels: function() {
-			
+
+		},
+
+		/** 
+		 * This is will be called when an employee/manager is viewing his own data
+		 * @constructor 
+		 */
+		_employeeHandler: function() {
+
+		},
+
+		/** 
+		 * This will be called when a manager is viewing his team members data
+		 * @constructor 
+		 * @param oEvent to get the employee id
+		 */
+		_teamMemberHandler: function(oEvent) {
+			var sObjectId = oEvent.getParameter("arguments").employeeId;
 		},
 
 		_loadApplicationData: function() {
