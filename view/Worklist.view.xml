@@ -19,9 +19,9 @@
 		<content>
 			<uxap:ObjectPageLayout id="idEmpPageObjLayout" class="cl_EmpPageObjLayout" showTitleInHeaderContent="true" showHeaderContent="true">
 				<uxap:headerTitle>
-					<uxap:ObjectPageHeader id="idEmpPageHeader" headerDesign="Light" class="sapUiSmallMarginTop cl_EmpPageHeader" objectTitle="Punith Babu"
+					<uxap:ObjectPageHeader id="idEmpPageHeader" headerDesign="Light" class="sapUiSmallMarginTop cl_EmpPageHeader" objectTitle="{EmpName}"
 						showTitleSelector="false" showMarkers="false" markFavorite="false" markFlagged="false" markChanges="false"
-						markChangesPress="handleMarkChangesPress" objectSubtitle="SAP Developer" objectImageURI="images/wasl_logo.png" objectImageShape="Circle"
+						markChangesPress="handleMarkChangesPress" objectSubtitle="{EmpDesig}" objectImageURI="images/wasl_logo.png" objectImageShape="Circle"
 						isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="false"
 						showPlaceholder="true">
 						<!--	<uxap:actions>
@@ -32,24 +32,24 @@
 				</uxap:headerTitle>
 				<uxap:headerContent>
 					<layout:VerticalLayout >
-						<ObjectStatus title="Department" text="Information Technology"/>
+						<ObjectStatus title="Department" text="{EmpdDeptName}"/>
 					</layout:VerticalLayout>
-					<layout:VerticalLayout >
-						<ObjectStatus id="empId" title="Employee No" text="{EmpNo}"/>
+					<!--<layout:VerticalLayout >-->
+					<!--	<ObjectStatus id="empId" title="Employee No" text="{EmpNo}"/>-->
 						<!--<Text text="{EmpNo}"/>-->
-					</layout:VerticalLayout>
+					<!--</layout:VerticalLayout>-->
 					<layout:VerticalLayout >
 						<ObjectStatus title="Mobile" text="{EmpMob}"/>
-						<ObjectStatus title="Email" text="pbabu@wasl.ae"/>
+						<ObjectStatus title="Email" text="{EmpMail}"/>
 					</layout:VerticalLayout>
 					<layout:VerticalLayout>
-						<ObjectStatus title="Manager" text="Simyon Stanli"/>
+						<ObjectStatus title="Manager" text="{EmpMgrName}"/>
 					</layout:VerticalLayout>
 					<layout:VerticalLayout visible="{= ${device>/system/desktop} === true}"/>
-					<layout:VerticalLayout>
-						<ObjectStatus title="Overall Status" text="Pending" state="Error"/>
+					<!--<layout:VerticalLayout>-->
+					<!--	<ObjectStatus title="Overall Status" text="{OverallStat}" state="Error"/>-->
 						<!--<ObjectStatus title="Rejected Reason" text="{tsEmpAppData>/status/stateText}" visible="{path: 'tsEmpAppData>/status/description', formatter: '.formatter.showRejectedReason'}"  state="{path: 'tsEmpAppData>/status/state', formatter: '.formatter.getTsHeaderStatus'}" />-->
-					</layout:VerticalLayout>
+					<!--</layout:VerticalLayout>-->
 				</uxap:headerContent>
 				<uxap:sections>
 					<uxap:ObjectPageSection title="Program Nominations" class="cl_EmpPageObjPageSection">
@@ -58,31 +58,31 @@
 								<!--<Panel expandable="false" expanded="true" class="cl_EmpPageProgPanel">-->
 								<!--	<layout:Grid defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop">-->
 								<!--		<layout:content>-->
-								<List mode="None" items="" noDataText="NO ITEMS FOUND">
+								<List mode="None" items="{EmpProgNomList}" noDataText="NO ITEMS FOUND">
 									<CustomListItem class="sapUiSmallMarginTopBottom" press="handleProgramSelect" type="Navigation">
 										<HBox>
-											<core:Icon size="2rem" color="green" src="sap-icon://complete" visible="true" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
-											<core:Icon size="2rem" color="red" src="sap-icon://pending" visible="false" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+											<core:Icon size="2rem" color="{path:'Status', formatter:'.formatter.iconNominationProgramColor'}"
+												src="{path:'Status', formatter:'.formatter.iconNominationProgram'}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
 											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
 												<!--	<Label text="Program Name" class="bold headerInfo"/>-->
-												<Title class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Nomination for Employee of Year" level="H1" titleStyle="H4"/>
+												<Title class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="{ProgName}" level="H1" titleStyle="H4"/>
 												<!--<Text text="Please Nomination for Employee of Year" class="bold headerInfo"/>-->
 											</VBox>
 											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
 												<!--	<Label text="Program Type"/>-->
-												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="Employer of Year 2017"/>
+												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="{ProgTypeDescr}7"/>
 											</VBox>
 											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
 												<!--	<Label text="Started"/>-->
-												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="01,JUN 2018"/>
+												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="{path:'StartDate', type:'sap.ui.model.type.Date'}"/>
 											</VBox>
 											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
 												<!--<Label text="Ending"/>-->
-												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="31,DEC 2018"/>
+												<Label class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="{path:'EndDate', type:'sap.ui.model.type.Date'}"/>
 											</VBox>
 											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
 												<!--	<Label text="Status"/>-->
-												<ObjectStatus class="sapUiTinyMarginTop sapUiSmallMarginBegin" title="Pending" state="Error"/>
+												<ObjectStatus class="sapUiTinyMarginTop sapUiSmallMarginBegin" text="{StatusTxt}" state="Error"/>
 											</VBox>
 										</HBox>
 									</CustomListItem>
