@@ -11,7 +11,7 @@
 					<Label id="idEmpTsPageCustomBarLabel" text="Award Nomination"></Label>
 					<core:Icon src="sap-icon://competitor"/>
 					<ToolbarSpacer/>
-					<Button icon="sap-icon://log" class="cl_EmpPageLogOff" press="onAppLogoff" tooltip="Close"></Button>
+					<!--<Button icon="sap-icon://log" class="cl_EmpPageLogOff" press="onAppLogoff" tooltip="Close"></Button>-->
 				</content>
 			</Toolbar>
 		</customHeader>
