@@ -56,10 +56,16 @@ sap.ui.define([
 
 		handleProgramSelect: function(oEvent) {
 			// var programId;
-
-			this.navigateToRoute("program", {
-				programID: "P000001"
-			});
+			if (this.managerTeamView) {
+				this.navigateToRoute("managerteammemberprogram", {
+					employeeId: this.empId,
+					programID: "P000001"
+				});
+			} else {
+				this.navigateToRoute("program", {
+					programID: "P000001"
+				});
+			}
 		},
 
 		/** 
@@ -84,7 +90,7 @@ sap.ui.define([
 		 */
 		_employeeHandler: function() {
 			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
-
+			this.managerTeamView = false;
 			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
 				var oModel = this.getOwnerComponent().getModel();
 				this.getView().setBusy(true);
@@ -105,6 +111,7 @@ sap.ui.define([
 		 * @param oEvent to get the employee id
 		 */
 		_teamMemberHandler: function(oEvent) {
+			this.managerTeamView = true;
 			this.empId = oEvent.getParameter("arguments").employeeId;
 			// this.managerId = oEvent.getParameter("arguments").managerNo;
 

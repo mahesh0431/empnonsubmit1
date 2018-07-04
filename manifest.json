@@ -112,6 +112,10 @@
 				"name": "managerteammember",
 				"target": ["managerTeam", "teamWorklist"]
 			}, {
+				"pattern": "managerteam/empNo/{employeeId}/Program/{programID}",
+				"name": "managerteammemberprogram",
+				"target": ["managerTeam", "teamProgramForm"]
+			}, {
 				"name": "program",
 				"pattern": "Program/{programID}",
 				"greedy": false,
@@ -145,6 +149,14 @@
 					"controlAggregation": "detailPages",
 					"controlId": "idSplitAppControl"
 				},
+				"teamProgramForm": {
+					"parent": "teamSplitApp",
+					"viewName": "ProgNominForm",
+					"viewId": "ProgNominForm",
+					"viewLevel": 3,
+					"controlAggregation": "detailPages",
+					"controlId": "idSplitAppControl"
+				},
 				"object": {
 					"viewName": "Object",
 					"viewId": "object",
@@ -163,6 +175,7 @@
 					"transition": "slide",
 					"clearAggregation": true,
 					"viewName": "ProgNominForm",
+					"viewId": "ProgNominForm",
 					"viewLevel": 2
 				}
 			}
