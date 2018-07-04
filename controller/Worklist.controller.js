@@ -37,7 +37,7 @@ sap.ui.define([
 
 		onAfterRendering: function() {
 			// this._loadApplicationData();
-		
+
 		},
 
 		/* ============================================================ */
@@ -118,8 +118,8 @@ sap.ui.define([
 		_teamMemberHandler: function(oEvent) {
 			// Hide the team button when 
 			this.getView().byId("btShowTeam").setVisible(false);
-			if(this.getModel('device').getData().system.phone){
-			this.getView().byId("idBackBtn").setVisible(true);
+			if (this.getModel("device").getData().system.phone) {
+				this.getView().byId("idBackBtn").setVisible(true);
 			}
 			this.managerTeamView = true;
 			this.empId = oEvent.getParameter("arguments").employeeId;
@@ -195,8 +195,8 @@ sap.ui.define([
 			this.getRouter().navTo(routeName, mObject);
 		},
 
-		navBackToTeam: function(){
-		this.navBack();	
+		navBackToTeam: function() {
+			this.navBack();
 		},
 
 		onSearch: function(oEvent) {
