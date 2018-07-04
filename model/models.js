@@ -39,16 +39,16 @@ sap.ui.define([
 				StatusTxt: "",
 				NominEmpNo: "",
 				editerValue: "",
-				checkbox1: "",
-				checkbox2: "",
-				checkbox3: "",
-				checkbox4: "",
-				checkbox5: "",
-				checkbox6: "",
-				checkbox7: "",
-				checkbox8: "",
-				checkbox9: "",
-				checkbox10: ""
+				checkbox1: false,
+				checkbox2: false,
+				checkbox3: false,
+				checkbox4: false,
+				checkbox5: false,
+				checkbox6: false,
+				checkbox7: false,
+				checkbox8: false,
+				checkbox9: false,
+				checkbox10: false
 			});
 		}
 

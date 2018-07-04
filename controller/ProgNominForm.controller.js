@@ -76,7 +76,7 @@ sap.ui.define([
 						case "002":
 							var aCheckedItems = item.Answer.split("/");
 							aCheckedItems.forEach(function(checked) {
-								programFormModel.getData()["checked" + checked] = true;
+								programFormModel.getData()["checkbox" + checked] = true;
 							});
 					}
 				});
