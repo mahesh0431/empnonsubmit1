@@ -12,6 +12,7 @@ sap.ui.define([
 		/* =========================================================== */
 		onInit: function() {
 			this.getRouter().getRoute("program").attachPatternMatched(this._onRouteMatched, this);
+			this.getRouter().getRoute("managerteammemberprogram").attachPatternMatched(this._onRouteMatchedTeamMember, this);
 		},
 
 		onBeforeRendering: function() {
@@ -29,6 +30,21 @@ sap.ui.define([
 		/* ============================================================ */
 		/* Controller Methods                                           */
 		/* =============================================================*/
+
+		/** 
+		 * This below method is triggered when the manager opens his team member submission
+		 * @constructor 
+		 * @param oEvent
+		 */
+		_onRouteMatchedTeamMember: function(oEvent) {
+
+		},
+
+		/** 
+		 * This below method is triggered when the manager/employee opens his own submission
+		 * @constructor 
+		 * @param mObject
+		 */
 		_onRouteMatched: function(mObject) {
 			var programId = mObject.getParameter("arguments").programID;
 			// this.getModel().attachEventOnce("requestFailed", this._programRequestFailed, this);
