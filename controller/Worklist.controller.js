@@ -37,7 +37,7 @@ sap.ui.define([
 
 		onAfterRendering: function() {
 			// this._loadApplicationData();
-
+		
 		},
 
 		/* ============================================================ */
@@ -90,7 +90,8 @@ sap.ui.define([
 		 */
 		_employeeHandler: function() {
 			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
-
+			this.getView().byId("btShowTeam").setVisible(true);
+			this.getView().byId("idBackBtn").setVisible(false);
 			this.managerTeamView = false;
 			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
 				var oModel = this.getOwnerComponent().getModel();
@@ -117,7 +118,9 @@ sap.ui.define([
 		_teamMemberHandler: function(oEvent) {
 			// Hide the team button when 
 			this.getView().byId("btShowTeam").setVisible(false);
-			
+			if(this.getModel('device').getData().system.phone){
+			this.getView().byId("idBackBtn").setVisible(true);
+			}
 			this.managerTeamView = true;
 			this.empId = oEvent.getParameter("arguments").employeeId;
 			// this.managerId = oEvent.getParameter("arguments").managerNo;
@@ -190,6 +193,10 @@ sap.ui.define([
 
 		navigateToRoute: function(routeName, mObject) {
 			this.getRouter().navTo(routeName, mObject);
+		},
+
+		navBackToTeam: function(){
+		this.navBack();	
 		},
 
 		onSearch: function(oEvent) {

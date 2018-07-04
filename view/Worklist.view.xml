@@ -5,6 +5,7 @@
 			<Toolbar id="idEmpPageCustomBar" class="cl_EmpTsWlPageCustBar">
 				<content>
 					<!--<ImageContent class="cl_waslLogo" src="images/wasl_logo.png" ></ImageContent>-->
+					<Button id="idBackBtn" visible="false" icon="sap-icon://nav-back" press="navBackToTeam"/>
 					<Image class="waslLogo" src="images/wasl_logo.png" height="35px" width="50px" backgroundPosition="center"/>
 					<ToolbarSpacer/>
 					<core:Icon src="sap-icon://competitor"/>
@@ -38,7 +39,7 @@
 						<!--<Text text="{EmpNo}"/>-->
 					</layout:VerticalLayout>
 					<layout:VerticalLayout >
-						<ObjectStatus title="Mobile" text="971509772754"/>
+						<ObjectStatus title="Mobile" text="{EmpMob}"/>
 						<ObjectStatus title="Email" text="pbabu@wasl.ae"/>
 					</layout:VerticalLayout>
 					<layout:VerticalLayout>

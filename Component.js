@@ -39,7 +39,7 @@ sap.ui.define([
 				isManager: true
 			};
 			if (this.getComponentData() && this.getComponentData().ISMANAGER) {
-				mData.userType = this.getComponentData().startupParameters.ISMANAGER[0];
+				mData.isManager = this.getComponentData().startupParameters.ISMANAGER[0];
 			}
 
 			this.setModel(models.createCompParamModel(mData), "componentParams");
