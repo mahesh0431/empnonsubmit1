@@ -10,27 +10,11 @@ sap.ui.define([
 		/* lifecycle methods                                           */
 		/* =========================================================== */
 		onInit: function() {
-			this.getRouter().getRoute("program").attachPatternMatched(this._onObjectMatched, this);
+			this.getRouter().getRoute("program").attachPatternMatched(this._onRouteMatched, this);
 		},
 
 		onBeforeRendering: function() {
 
-		},
-
-		onAfterRendering: function() {
-			// var oRichTextEditor = new RTE("idFormEditor", {
-			// 	editorType: sap.ui.richtexteditor.EditorType.TinyMCE4,
-			// 	width: "100%",
-			// 	height: "600px",
-			// 	customToolbar: true,
-			// 	showGroupFont: true,
-			// 	showGroupLink: true,
-			// 	showGroupInsert: true,
-			// 	value: ""
-			// });
-
-			// this.getView().byId("idFormEditorLayout").addContent(oRichTextEditor);
-			// sap.ui.getCore().applyChanges();
 		},
 
 		/* ============================================================ */
@@ -44,22 +28,75 @@ sap.ui.define([
 		/* ============================================================ */
 		/* Controller Methods                                           */
 		/* =============================================================*/
-		_onObjectMatched: function(mObject) {
-			var programId = mObject.getParameter("arguments").programID;
-			this.getModel().attachEventOnce("requestFailed", this._programRequestFailed, this);
-			this.getView().bindElement("/" + this.getModel().createKey("EmpProgListSet", {
-				ProgId: programId
-			}), {
-				events: {
-					dataReceived: function(oEvent) {
+		_onRouteMatched: function(mObject) {
+			this.programId = mObject.getParameter("arguments").programID;
+			// this.getModel().attachEventOnce("requestFailed", this._programRequestFailed, this);
 
-					}.bind(this)
-				}
-			});
+			// this.getView().bindElement("/" + this.getModel().createKey("EmpProgListSet", {
+			// 	ProgId: programId
+			// }), {
+			// 	events: {
+			// 		dataReceived: function(oEvent) {
 
+			// 		}.bind(this)
+			// 	}
+			// });
 		},
 
 		_programRequestFailed: function(oEvent) {
+
+		},
+
+		getFormData: function() {
+			var formValue, reasonList, aFormAnswers = [];
+			formValue = this.byId("idFormEditor").getValue();
+			this.byId("idNominCheckboxGrid").getContent().forEach(function(mItem, index) {
+				if (mItem.getSelected() === true) {
+					reasonList = reasonList + String(index) + "/";
+				}
+			});
+			aFormAnswers = [{
+				Questno: "001",
+				Answer: formValue
+			}, {
+				Questno: "002",
+				Answer: reasonList
+			}];
+
+			return {
+					ProgId: this.programId,
+					NominByMgr: "",
+					NominId: "",
+					ProgName: "",
+					ProgType: "",
+					ProgTypeDescr: "",
+					Status: "",
+					NominFormDetailSet: aFormAnswers
+				};
+		},
+
+		onNominFormSave: function() {
+			var formData = this.getFormData();
+			formData.Status = "1";
+			this._createNominationForm(formData);
+		},
+
+		onNominFormSubmit: function() {
+			// Check confirm before submit
+			var formData = this.getFormData();
+			formData.Status = "2";
+			this._createNominationForm(formData);
+		},
+
+		_createNominationForm: function(formData) {
+			this.getView().getModel().create("/EmpProgListSet", formData, {
+				success: function(data, response) {
+					
+				}.bind(this),
+				error: function(oError) {
+
+				}
+			});
 
 		},
 

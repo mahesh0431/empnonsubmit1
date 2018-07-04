@@ -90,6 +90,7 @@ sap.ui.define([
 		 */
 		_employeeHandler: function() {
 			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
+
 			this.managerTeamView = false;
 			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
 				var oModel = this.getOwnerComponent().getModel();

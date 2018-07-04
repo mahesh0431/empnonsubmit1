@@ -14,7 +14,7 @@
 							</Toolbar>
 						</headerToolbar>
 						<content>
-							<rte:RichTextEditor editorType="TinyMCE4" width="100%" height="95%" value="" />
+							<rte:RichTextEditor id="idFormEditor" editorType="TinyMCE4" width="100%" height="95%" value=""/>
 							<!--<l:VerticalLayout id="idFormEditorLayout" width="100%"></l:VerticalLayout>-->
 						</content>
 						<layoutData>
@@ -31,18 +31,18 @@
 							</Toolbar>
 						</headerToolbar>
 						<content>
-							<l:Grid defaultSpan="L2 M4 S4">
+							<l:Grid id="idNominCheckboxGrid" defaultSpan="L2 M4 S4">
 								<l:content>
-									<CheckBox text="People Focus"/>
-									<CheckBox text="Innovation"/>
-									<CheckBox text="Diligence"/>
-									<CheckBox text="Transparency"/>
-									<CheckBox text="Results Orientation"/>
-									<CheckBox text="Positive Attitude"/>
-									<CheckBox text="Results Through Teamwork"/>
-									<CheckBox text="Continuous Improvement"/>
-									<CheckBox text="Communication"/>
-									<CheckBox text="Integrity"/>
+									<CheckBox text="People Focus" selected="" enabled="true"/>
+									<CheckBox text="Innovation" selected="" enabled="true"/>
+									<CheckBox text="Diligence" selected="" enabled="true"/>
+									<CheckBox text="Transparency" selected="" enabled="true"/>
+									<CheckBox text="Results Orientation" selected="" enabled="true"/>
+									<CheckBox text="Positive Attitude" selected="" enabled="true"/>
+									<CheckBox text="Results Through Teamwork" selected="" enabled="true"/>
+									<CheckBox text="Continuous Improvement" selected="" enabled="true"/>
+									<CheckBox text="Communication" selected="" enabled="true"/>
+									<CheckBox text="Integrity" selected="" enabled="true"/>
 								</l:content>
 							</l:Grid>
 						</content>
@@ -57,8 +57,8 @@
 		<footer>
 			<Toolbar>
 				<Toolbarspacer/>
-				<Button icon="sap-icon://save" text="Save"/>
-				<Button icon="sap-icon://accept" text="Submit"/>
+				<Button icon="sap-icon://save" text="Save" type="Emphasized" press="onNominFormSave"/>
+				<Button icon="sap-icon://accept" text="Submit" type="Accept" press="onNominFormSubmit"/>
 			</Toolbar>
 		</footer>
 	</Page>
