@@ -91,7 +91,12 @@ sap.ui.define([
 		 */
 		_employeeHandler: function() {
 			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
-			this.getView().byId("btShowTeam").setVisible(true);
+			if (this.getView().getModel("componentParams").isManager) {
+				this.getView().byId("btShowTeam").setVisible(true);
+			} else {
+				this.getView().byId("btShowTeam").setVisible(false);
+			}
+
 			this.getView().byId("idBackBtn").setVisible(false);
 			this.managerTeamView = false;
 			this.getOwnerComponent().getModel().metadataLoaded().then(function() {
@@ -122,6 +127,7 @@ sap.ui.define([
 			if (this.getModel("device").getData().system.phone) {
 				this.getView().byId("idBackBtn").setVisible(true);
 			}
+			
 			this.managerTeamView = true;
 			this.empId = oEvent.getParameter("arguments").employeeId;
 			// this.managerId = oEvent.getParameter("arguments").managerNo;
