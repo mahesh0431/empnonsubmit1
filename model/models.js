@@ -26,6 +26,30 @@ sap.ui.define([
 			var oModel = new JSONModel(params);
 			oModel.setDefaultBindingMode("OneWay");
 			return oModel;
+		},
+
+		getProgramFormModel: function() {
+			return new JSONModel({
+				ProgId: "",
+				NominId: "",
+				ProgName: "",
+				ProgType: "",
+				NominByMgr: "",
+				Status: "",
+				StatusTxt: "",
+				NominEmpNo: "",
+				editerValue: "",
+				checkbox1: "",
+				checkbox2: "",
+				checkbox3: "",
+				checkbox4: "",
+				checkbox5: "",
+				checkbox6: "",
+				checkbox7: "",
+				checkbox8: "",
+				checkbox9: "",
+				checkbox10: ""
+			});
 		}
 
 	};

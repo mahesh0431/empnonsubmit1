@@ -1,7 +1,8 @@
 sap.ui.define([
 	"emp/nom/sub/controller/BaseController",
-	"sap/ui/richtexteditor/RichTextEditor"
-], function(BaseController, RTE) {
+	"sap/ui/richtexteditor/RichTextEditor",
+	"emp/nom/sub/model/models"
+], function(BaseController, RTE, models) {
 	"use strict";
 
 	return BaseController.extend("emp.nom.sub.controller.ProgNominForm", {
@@ -29,18 +30,60 @@ sap.ui.define([
 		/* Controller Methods                                           */
 		/* =============================================================*/
 		_onRouteMatched: function(mObject) {
-			this.programId = mObject.getParameter("arguments").programID;
+			var programId = mObject.getParameter("arguments").programID;
 			// this.getModel().attachEventOnce("requestFailed", this._programRequestFailed, this);
+			this._readProgramById(programId);
+		},
 
-			// this.getView().bindElement("/" + this.getModel().createKey("EmpProgListSet", {
-			// 	ProgId: programId
-			// }), {
-			// 	events: {
-			// 		dataReceived: function(oEvent) {
+		_readProgramById: function(programId) {
+			this.setInitViewModels();
+			var mPage = this.getView().byId("idProgNominForm");
 
-			// 		}.bind(this)
-			// 	}
-			// });
+			mPage.setTitle("Program Nomination Form");
+			var fmSetProgramData = function(mData) {
+				var programFormModel = this.getView().getModel("programForm");
+				mPage.setTitle("Program " + mData.ProgId);
+				// mForm.getTitle().setText((mData.Status === "2" ? "Display" : "Change") + " Program");
+				programFormModel.getData().ProgId = mData.ProgId;
+				programFormModel.getData().NominId = mData.ProgName;
+				programFormModel.getData().ProgName = mData.ProgType;
+				programFormModel.getData().ProgType = mData.ProgType;
+				programFormModel.getData().NominByMgr = mData.NominByMgr;
+				programFormModel.getData().Status = mData.Status;
+				programFormModel.getData().StatusTxt = mData.StatusTxt;
+				programFormModel.getData().NominEmpNo = mData.NominEmpNo;
+				mData.NominFormDetailSet.results.forEach(function(item) {
+					switch (item.Questno) {
+						case "001":
+							programFormModel.getData().editerValue = item.Answer;
+							break;
+						case "002":
+							var aCheckedItems = item.Answer.split("/");
+							aCheckedItems.forEach(function(checked) {
+								programFormModel.getData()["checked" + checked] = true;
+							});
+					}
+				});
+				programFormModel.refresh();
+			}.bind(this);
+			this.getModel().read("/" + this.getModel().createKey("EmpProgListSet", {
+				ProgId: programId
+			}), {
+				urlParameters: {
+					$expand: "NominFormDetailSet"
+				},
+				success: function(data, response) {
+					fmSetProgramData(data);
+				},
+				error: function(oError) {
+
+				}
+			});
+
+		},
+
+		setInitViewModels: function() {
+			this.getView().setModel(models.getProgramFormModel(), "programForm");
 		},
 
 		_programRequestFailed: function(oEvent) {
@@ -48,7 +91,8 @@ sap.ui.define([
 		},
 
 		getFormData: function() {
-			var formValue, reasonList, aFormAnswers = [];
+			var formValue, reasonList = "",
+				aFormAnswers = [];
 			formValue = this.byId("idFormEditor").getValue();
 			this.byId("idNominCheckboxGrid").getContent().forEach(function(mItem, index) {
 				if (mItem.getSelected() === true) {
@@ -64,15 +108,15 @@ sap.ui.define([
 			}];
 
 			return {
-					ProgId: this.programId,
-					NominByMgr: "",
-					NominId: "",
-					ProgName: "",
-					ProgType: "",
-					ProgTypeDescr: "",
-					Status: "",
-					NominFormDetailSet: aFormAnswers
-				};
+				ProgId: this.programId,
+				NominByMgr: "",
+				NominId: "",
+				ProgName: "",
+				ProgType: "",
+				ProgTypeDescr: "",
+				Status: "",
+				NominFormDetailSet: aFormAnswers
+			};
 		},
 
 		onNominFormSave: function() {
@@ -91,7 +135,7 @@ sap.ui.define([
 		_createNominationForm: function(formData) {
 			this.getView().getModel().create("/EmpProgListSet", formData, {
 				success: function(data, response) {
-					
+
 				}.bind(this),
 				error: function(oError) {
 

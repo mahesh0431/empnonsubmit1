@@ -1,6 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="emp.nom.sub.controller.ProgNominForm"
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:rte="sap.ui.richtexteditor">
-	<Page title="Program" showNavButton="true" navButtonPress="handleNavBack" backgroundDesign="Transparent" titleLevel="H2" showFooter="true"
+	<Page id="idProgNominForm" title="Program" showNavButton="true" navButtonPress="handleNavBack" backgroundDesign="Transparent" titleLevel="H2" showFooter="true"
 		enableScrolling="false">
 		<content>
 			<!--<VBox height="100%">-->
