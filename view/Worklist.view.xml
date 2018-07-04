@@ -99,7 +99,7 @@
 			<Toolbar>
 				<Button id="idAppMessages" icon="sap-icon://message-popup" type="Reject" press="handleAppMessages"/>
 				<ToolbarSpacer/>
-				<Button icon="sap-icon://manager" visible="{componentParams>/isManager}" text="Nominate Team" type="Emphasized" press="handleShowTeam"></Button>
+				<Button icon="sap-icon://manager" id="btShowTeam" text="Nominate Team" type="Emphasized" press="handleShowTeam"></Button>
 				<Button icon="sap-icon://history" text="History" type="Emphasized"/>
 			</Toolbar>
 		</footer>

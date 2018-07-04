@@ -106,7 +106,7 @@
 			}, {
 				"pattern": "managerteam",
 				"name": "managerteam",
-				"target": ["teamWorklist", "managerTeam"]
+				"target": ["teamWorklist","managerTeam"]
 			}, {
 				"pattern": "managerteam/empNo/{employeeId}",
 				"name": "managerteammember",
@@ -133,19 +133,19 @@
 					"viewLevel": 2,
 					"transition": "slide"
 				},
-				"teamWorklist": {
+				"managerTeam": {
 					"parent": "teamSplitApp",
 					"viewName": "managerTeam",
 					"viewId": "managerTeam",
-					"viewLevel": 3,
+					"viewLevel": 2,
 					"controlAggregation": "masterPages",
 					"controlId": "idSplitAppControl"
 				},
-				"managerTeam": {
+				"teamWorklist": {
 					"parent": "teamSplitApp",
 					"viewName": "Worklist",
 					"viewId": "worklist",
-					"viewLevel": 2,
+					"viewLevel": 3,
 					"controlAggregation": "detailPages",
 					"controlId": "idSplitAppControl"
 				},
@@ -153,7 +153,7 @@
 					"parent": "teamSplitApp",
 					"viewName": "ProgNominForm",
 					"viewId": "ProgNominForm",
-					"viewLevel": 3,
+					"viewLevel": 4,
 					"controlAggregation": "detailPages",
 					"controlId": "idSplitAppControl"
 				},

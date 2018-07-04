@@ -100,6 +100,9 @@ sap.ui.define([
 						// this.getView().setBusy(false);
 						this.empId = mData.GetLoginEmployeeId.empId;
 						this._bindView(mData.GetLoginEmployeeId.empId);
+					}.bind(this),
+					error: function() {
+						this.getView().setBusy(false);
 					}.bind(this)
 				});
 			}.bind(this));
@@ -111,6 +114,9 @@ sap.ui.define([
 		 * @param oEvent to get the employee id
 		 */
 		_teamMemberHandler: function(oEvent) {
+			// Hide the team button when 
+			this.getView().byId("btShowTeam").setVisible(false);
+			
 			this.managerTeamView = true;
 			this.empId = oEvent.getParameter("arguments").employeeId;
 			// this.managerId = oEvent.getParameter("arguments").managerNo;
