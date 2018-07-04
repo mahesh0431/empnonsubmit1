@@ -56,14 +56,15 @@ sap.ui.define([
 
 		handleProgramSelect: function(oEvent) {
 			// var programId;
+			var programId = oEvent.getSource().getBindingContext().getObject().ProgId;
 			if (this.managerTeamView) {
 				this.navigateToRoute("managerteammemberprogram", {
 					employeeId: this.empId,
-					programID: "P000001"
+					programID: programId
 				});
 			} else {
 				this.navigateToRoute("program", {
-					programID: "P000001"
+					programID: programId
 				});
 			}
 		},
