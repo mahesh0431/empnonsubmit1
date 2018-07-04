@@ -36,10 +36,12 @@ sap.ui.define([
 			// Get the component parameter and set it to component
 			// here we will read if the manager is opening the app or if it the employee
 			var mData = {
-				isManager: true
+				isManager: false
 			};
-			if (this.getComponentData() && this.getComponentData().ISMANAGER) {
-				mData.isManager = this.getComponentData().startupParameters.ISMANAGER[0];
+			if (this.getComponentData() && this.getComponentData().startupParameters.ISMANAGER) {
+				if (this.getComponentData().startupParameters.ISMANAGER[0] === "X") {
+					mData.isManager = true;
+				}
 			}
 
 			this.setModel(models.createCompParamModel(mData), "componentParams");
@@ -57,7 +59,7 @@ sap.ui.define([
 		 */
 		destroy: function() {
 			this.oListSelector.destroy();
-			this._oErrorHandler.destroy();
+			// this._oErrorHandler.destroy();
 			// call the base component's destroy function
 			UIComponent.prototype.destroy.apply(this, arguments);
 		},

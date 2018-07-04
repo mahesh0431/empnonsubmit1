@@ -91,7 +91,7 @@ sap.ui.define([
 		 */
 		_employeeHandler: function() {
 			// this.getView().byId("idEmpTsPageCustomBarLabel").setText("Employee Award Nomination");
-			if (this.getView().getModel("componentParams").isManager) {
+			if (this.getView().getModel("componentParams").getData().isManager) {
 				this.getView().byId("btShowTeam").setVisible(true);
 			} else {
 				this.getView().byId("btShowTeam").setVisible(false);

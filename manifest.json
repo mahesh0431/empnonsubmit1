@@ -1,215 +1,215 @@
 {
-	"_version": "1.4.0",
-	"sap.app": {
-		"id": "emp.nom.sub",
-		"type": "application",
-		"i18n": "i18n/i18n.properties",
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
-		"applicationVersion": {
-			"version": "1.0.0"
-		},
-		"dataSources": {
-			"mainService": {
-				"uri": "/sap/opu/odata/sap/ZP_ENP_SUBMIT_SRV/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
-				}
-			}
-		},
-		"sourceTemplate": {
-			"id": "sap.ui.ui5-template-plugin.1worklist",
-			"version": "1.38.3"
-		}
-	},
-	"sap.ui": {
-		"technology": "UI5",
-		"icons": {
-			"icon": "sap-icon://task",
-			"favIcon": "",
-			"phone": "",
-			"phone@2": "",
-			"tablet": "",
-			"tablet@2": ""
-		},
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_bluecrystal"
-		]
-	},
-	"sap.ui5": {
-		"rootView": {
-			"viewName": "emp.nom.sub.view.App",
-			"type": "XML",
-			"id": "app"
-		},
-		"dependencies": {
-			"minUI5Version": "1.38.0",
-			"libs": {
-				"sap.collaboration": {
-					"minVersion": "1.38",
-					"lazy": true
-				},
-				"sap.m": {
-					"minVersion": "1.38.0"
-				},
-				"sap.ui.core": {
-					"minVersion": "1.38.0"
-				},
-				"sap.ui.layout": {
-					"minVersion": ""
-				},
-				"sap.ushell": {
-					"minVersion": "1.38.0"
-				}
-			}
-		},
-		"handleValidation": true,
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleName": "emp.nom.sub.i18n.i18n"
-				}
-			},
-			"": {
-				"dataSource": "mainService",
-				"preload": true,
-				"settings": {
-					"defaultCountMode": "None",
-					"defaultBindingMode": "OneWay",
-					"defaultOperationMode": "Server"
-				}
-			}
-		},
-		"routing": {
-			"config": {
-				"routerClass": "sap.m.routing.Router",
-				"viewType": "XML",
-				"viewPath": "emp.nom.sub.view",
-				"controlId": "app",
-				"controlAggregation": "pages",
-				"bypassed": {
-					"target": [
-						"notFound"
-					]
-				},
-				"async": true
-			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "worklist",
-					"target": [
-						"worklist"
-					]
-				},
-				{
-					"pattern": "managerteam",
-					"name": "managerteam",
-					"target": [
-						"teamWorklist",
-						"managerTeam"
-					]
-				},
-				{
-					"pattern": "managerteam/empNo/{employeeId}",
-					"name": "managerteammember",
-					"target": [
-						"managerTeam",
-						"teamWorklist"
-					]
-				},
-				{
-					"pattern": "managerteam/empNo/{employeeId}/Program/{programID}",
-					"name": "managerteammemberprogram",
-					"target": [
-						"managerTeam",
-						"teamProgramForm"
-					]
-				},
-				{
-					"name": "program",
-					"pattern": "Program/{programID}",
-					"greedy": false,
-					"target": [
-						"programForm"
-					]
-				}
-			],
-			"targets": {
-				"worklist": {
-					"viewName": "Worklist",
-					"viewId": "worklist",
-					"viewLevel": 1
-				},
-				"teamSplitApp": {
-					"viewName": "managerEmployeesSplitApp",
-					"viewId": "managerEmployeesSplitApp",
-					"viewLevel": 2,
-					"transition": "slide"
-				},
-				"managerTeam": {
-					"parent": "teamSplitApp",
-					"viewName": "managerTeam",
-					"viewId": "managerTeam",
-					"viewLevel": 2,
-					"controlAggregation": "masterPages",
-					"controlId": "idSplitAppControl"
-				},
-				"teamWorklist": {
-					"parent": "teamSplitApp",
-					"viewName": "Worklist",
-					"viewId": "worklist",
-					"viewLevel": 3,
-					"controlAggregation": "detailPages",
-					"controlId": "idSplitAppControl"
-				},
-				"teamProgramForm": {
-					"parent": "teamSplitApp",
-					"viewName": "ProgNominForm",
-					"viewId": "ProgNominForm",
-					"viewLevel": 4,
-					"controlAggregation": "detailPages",
-					"controlId": "idSplitAppControl"
-				},
-				"object": {
-					"viewName": "Object",
-					"viewId": "object",
-					"viewLevel": 4
-				},
-				"objectNotFound": {
-					"viewName": "ObjectNotFound",
-					"viewId": "objectNotFound"
-				},
-				"notFound": {
-					"viewName": "NotFound",
-					"viewId": "notFound"
-				},
-				"programForm": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearAggregation": true,
-					"viewName": "ProgNominForm",
-					"viewId": "ProgNominForm",
-					"viewLevel": 2
-				}
-			}
-		}
-	},
-	"sap.platform.abap": {
-		"uri": "/sap/bc/ui5_ui5/sap/zemp_nom_submit",
-		"_version": "1.1.0"
-	}
+    "_version": "1.4.0",
+    "sap.app": {
+        "id": "emp.nom.sub",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZP_ENP_SUBMIT_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "sap.ui.ui5-template-plugin.1worklist",
+            "version": "1.38.3"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://task",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "emp.nom.sub.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "dependencies": {
+            "minUI5Version": "1.38.0",
+            "libs": {
+                "sap.collaboration": {
+                    "minVersion": "1.38",
+                    "lazy": true
+                },
+                "sap.m": {
+                    "minVersion": "1.38.0"
+                },
+                "sap.ui.core": {
+                    "minVersion": "1.38.0"
+                },
+                "sap.ui.layout": {
+                    "minVersion": ""
+                },
+                "sap.ushell": {
+                    "minVersion": "1.38.0"
+                }
+            }
+        },
+        "handleValidation": true,
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "emp.nom.sub.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultCountMode": "None",
+                    "defaultBindingMode": "OneWay",
+                    "defaultOperationMode": "Server"
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "emp.nom.sub.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "bypassed": {
+                    "target": [
+                        "notFound"
+                    ]
+                },
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "worklist",
+                    "target": [
+                        "worklist"
+                    ]
+                },
+                {
+                    "pattern": "managerteam",
+                    "name": "managerteam",
+                    "target": [
+                        "teamWorklist",
+                        "managerTeam"
+                    ]
+                },
+                {
+                    "pattern": "managerteam/empNo/{employeeId}",
+                    "name": "managerteammember",
+                    "target": [
+                        "managerTeam",
+                        "teamWorklist"
+                    ]
+                },
+                {
+                    "pattern": "managerteam/empNo/{employeeId}/Program/{programID}",
+                    "name": "managerteammemberprogram",
+                    "target": [
+                        "managerTeam",
+                        "teamProgramForm"
+                    ]
+                },
+                {
+                    "name": "program",
+                    "pattern": "Program/{programID}",
+                    "greedy": false,
+                    "target": [
+                        "programForm"
+                    ]
+                }
+            ],
+            "targets": {
+                "worklist": {
+                    "viewName": "Worklist",
+                    "viewId": "worklist",
+                    "viewLevel": 1
+                },
+                "teamSplitApp": {
+                    "viewName": "managerEmployeesSplitApp",
+                    "viewId": "managerEmployeesSplitApp",
+                    "viewLevel": 2,
+                    "transition": "slide"
+                },
+                "managerTeam": {
+                    "parent": "teamSplitApp",
+                    "viewName": "managerTeam",
+                    "viewId": "managerTeam",
+                    "viewLevel": 2,
+                    "controlAggregation": "masterPages",
+                    "controlId": "idSplitAppControl"
+                },
+                "teamWorklist": {
+                    "parent": "teamSplitApp",
+                    "viewName": "Worklist",
+                    "viewId": "worklist",
+                    "viewLevel": 3,
+                    "controlAggregation": "detailPages",
+                    "controlId": "idSplitAppControl"
+                },
+                "teamProgramForm": {
+                    "parent": "teamSplitApp",
+                    "viewName": "ProgNominForm",
+                    "viewId": "ProgNominForm",
+                    "viewLevel": 4,
+                    "controlAggregation": "detailPages",
+                    "controlId": "idSplitAppControl"
+                },
+                "object": {
+                    "viewName": "Object",
+                    "viewId": "object",
+                    "viewLevel": 4
+                },
+                "objectNotFound": {
+                    "viewName": "ObjectNotFound",
+                    "viewId": "objectNotFound"
+                },
+                "notFound": {
+                    "viewName": "NotFound",
+                    "viewId": "notFound"
+                },
+                "programForm": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "ProgNominForm",
+                    "viewId": "ProgNominForm",
+                    "viewLevel": 2
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zemp_nom_submit",
+        "_version": "1.1.0"
+    }
 }

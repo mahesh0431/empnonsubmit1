@@ -1,147 +1,118 @@
 {
     "resources": [
         {
-            "name": "css/style.css"
-        },
-        {
-            "name": "manifest.json"
-        },
-        {
-            "name": "localService/metadata.xml"
-        },
-        {
-            "name": "localService/mockserver.js"
-        },
-        {
             "name": "Component.js"
         },
         {
-            "name": "i18n/i18n.properties",
-            "raw": "i18n/i18n.properties"
+            "name": "resources.json",
+            "merged": true
         },
         {
-            "name": "view/App.view.xml"
+            "name": ".project.json"
         },
         {
-            "name": "view/Worklist.view.xml"
+            "name": "neo-app.json"
         },
         {
-            "name": "view/Object.view.xml"
-        },
-        {
-            "name": "view/NotFound.view.xml"
+            "name": "view/managerTeam.view.xml"
         },
         {
             "name": "view/ObjectNotFound.view.xml"
         },
         {
-            "name": "controller/NotFound.controller.js"
+            "name": "view/NotFound.view.xml"
         },
         {
-            "name": "controller/BaseController.js"
+            "name": "view/App.view.xml"
         },
         {
-            "name": "controller/ErrorHandler.js"
+            "name": "view/managerEmployeesSplitApp.view.xml"
         },
         {
-            "name": "controller/Worklist.controller.js"
+            "name": "view/Object.view.xml"
         },
         {
-            "name": "controller/Object.controller.js"
+            "name": "view/ProgNominForm.view.xml"
         },
         {
-            "name": "controller/App.controller.js"
+            "name": "view/Worklist.view.xml"
         },
         {
-            "name": "images/sap_logo.jpg"
-        },
-        {
-            "name": "test/flpSandbox.html"
-        },
-        {
-            "name": "test/integration/NavigationJourney.js"
-        },
-        {
-            "name": "test/integration/FLPIntegrationJourney.js"
-        },
-        {
-            "name": "test/integration/ObjectJourney.js"
-        },
-        {
-            "name": "test/integration/NotFoundJourney.js"
-        },
-        {
-            "name": "test/integration/WorklistJourney.js"
-        },
-        {
-            "name": "test/integration/AllJourneys.js"
-        },
-        {
-            "name": "test/integration/opaTests.qunit.html"
-        },
-        {
-            "name": "test/integration/pages/Object.js"
-        },
-        {
-            "name": "test/integration/pages/App.js"
-        },
-        {
-            "name": "test/integration/pages/shareOptions.js"
-        },
-        {
-            "name": "test/integration/pages/Browser.js"
-        },
-        {
-            "name": "test/integration/pages/Worklist.js"
-        },
-        {
-            "name": "test/integration/pages/Common.js"
-        },
-        {
-            "name": "test/integration/pages/NotFound.js"
-        },
-        {
-            "name": "test/flpSandboxMockServer.html"
-        },
-        {
-            "name": "test/unit/model/formatter.js"
-        },
-        {
-            "name": "test/unit/model/models.js"
-        },
-        {
-            "name": "test/unit/helper/FakeI18nModel.js"
-        },
-        {
-            "name": "test/unit/controller/App.controller.js"
-        },
-        {
-            "name": "test/unit/controller/Worklist.controller.js"
-        },
-        {
-            "name": "test/unit/unitTests.qunit.html"
-        },
-        {
-            "name": "test/unit/allTests.js"
-        },
-        {
-            "name": "test/testsuite.qunit.html"
-        },
-        {
-            "name": "model/formatter.js"
+            "name": "index.html"
         },
         {
             "name": "model/models.js"
         },
         {
-            "name": "test.html"
+            "name": "model/formatter.js"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "images/wasl_logo.png"
+        },
+        {
+            "name": "images/sap_logo.jpg"
+        },
+        {
+            "name": "controller/Worklist.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/NotFound.controller.js"
+        },
+        {
+            "name": "controller/managerTeam.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/managerEmployeesSplitApp.controller.js"
+        },
+        {
+            "name": "controller/Object.controller.js"
+        },
+        {
+            "name": "controller/ProgNominForm.controller.js"
+        },
+        {
+            "name": "controller/ListSelector.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
         },
         {
             "name": "Component-preload.js",
             "merged": true
         },
         {
-            "name": "neo-app.json"
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "util/Helper/DataManager.js"
+        },
+        {
+            "name": "util/Helper/ValueHelpDialogSingle.js"
+        },
+        {
+            "name": "util/Helper/ModelHelper.js"
+        },
+        {
+            "name": "util/Helper/ConfirmDialog.js"
+        },
+        {
+            "name": "util/Helper/MessageHelper.js"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "manifest.json"
         }
     ]
 }
